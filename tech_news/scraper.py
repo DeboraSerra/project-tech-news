@@ -41,7 +41,7 @@ def scrape_next_page_link(html_content):
 def scrape_noticia(html_content):
     article = Selector(text=html_content)
     title = article.css("div.entry-header-inner h1.entry-title::text").getall()
-    title = ''.join(title).strip()
+    title = "".join(title).strip()
     timestamp = article.css("ul.post-meta li.meta-date::text").get()
     writer = article.css(
         "ul.post-meta li.meta-author span.author a::text"
@@ -71,7 +71,7 @@ def scrape_noticia(html_content):
 
 # Requisito 5
 def get_tech_news(amount):
-    content = fetch('https://blog.betrybe.com/')
+    content = fetch("https://blog.betrybe.com/")
     links = scrape_novidades(content)
     while len(links) < amount:
         next_page = scrape_next_page_link(content)
