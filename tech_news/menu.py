@@ -9,6 +9,31 @@ from tech_news.analyzer.ratings import top_5_news, top_5_categories
 import sys
 
 
+def function_0():
+    amount = input("Digite quantas notícias serão buscadas:")
+    return get_tech_news(amount)
+
+
+def function_1():
+    title = input("Digite o título:")
+    return search_by_title(title)
+
+
+def function_2():
+    date = input("Digite a data no formato aaaa-mm-dd:")
+    return search_by_date(date)
+
+
+def function_3():
+    tag = input("Digite a tag:")
+    return search_by_tag(tag)
+
+
+def function_4():
+    category = input("Digite a categoria:")
+    return search_by_category(category)
+
+
 # Requisito 12
 def analyzer_menu():
     option = input(
@@ -23,21 +48,8 @@ def analyzer_menu():
  7 - Sair.
  """
     )
-    if option == "0":
-        amount = input("Digite quantas notícias serão buscadas:")
-        return get_tech_news(amount)
-    elif option == "1":
-        title = input("Digite o título:")
-        return search_by_title(title)
-    elif option == "2":
-        date = input("Digite a data no formato aaaa-mm-dd:")
-        return search_by_date(date)
-    elif option == "3":
-        tag = input("Digite a tag:")
-        return search_by_tag(tag)
-    elif option == "4":
-        category = input("Digite a categoria:")
-        return search_by_category(category)
+    if int(option) < 5:
+        eval(f"function_{option}")()
     elif option == "5":
         return top_5_news()
     elif option == "6":
