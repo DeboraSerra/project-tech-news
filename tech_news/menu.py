@@ -6,6 +6,7 @@ from tech_news.analyzer.search_engine import (
     search_by_category,
 )
 from tech_news.analyzer.ratings import top_5_news, top_5_categories
+import sys
 
 
 # Requisito 12
@@ -42,7 +43,6 @@ def analyzer_menu():
     elif option == '6':
         return top_5_categories()
     elif option == '7':
-        return
+        return print('Encerrando script')
     else:
-        print('Opção inválida')
-        return
+        return print('Opção inválida', file=sys.stderr)
