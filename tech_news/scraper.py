@@ -22,14 +22,14 @@ def fetch(url):
 # Requisito 2
 def scrape_novidades(html_content):
     selector = Selector(text=html_content)
-    anchor_tags = selector.css('h2.entry-title a::attr(href)').getall()
+    anchor_tags = selector.css("h2.entry-title a::attr(href)").getall()
     return anchor_tags
 
 
 # Requisito 3
 def scrape_next_page_link(html_content):
     selector = Selector(text=html_content)
-    next_page = selector.css('a.next::attr(href)').get()
+    next_page = selector.css("a.next::attr(href)").get()
     if next_page:
         return next_page
     else:
@@ -38,7 +38,34 @@ def scrape_next_page_link(html_content):
 
 # Requisito 4
 def scrape_noticia(html_content):
-    """Seu código deve vir aqui"""
+    article = Selector(text=html_content)
+    title = article.css("div.entry-header-inner h1.entry-title::text").getall()
+    title = ''.join(title).strip()
+    timestamp = article.css("ul.post-meta li.meta-date::text").get()
+    writer = article.css(
+        "ul.post-meta li.meta-author span.author a::text"
+    ).get()
+    comments_count = article.css(
+        "div.post-comments h5.title-block::text"
+    ).re_first(r"\d")
+    summary = article.css(
+        "div.entry-content > p:first-of-type *::text"
+    ).getall()
+    summary = "".join(summary).strip()
+    tags = article.css("section.post-tags li a[rel=tag]::text").getall()
+    category = article.css("div.meta-category a span.label::text").get()
+    url = article.css("link[rel=canonical]::attr(href)").get()
+    news = {
+        "url": url,
+        "title": title,
+        "timestamp": timestamp,
+        "writer": writer,
+        "comments_count": comments_count or 0,
+        "summary": summary,
+        "tags": tags,
+        "category": category,
+    }
+    return news
 
 
 # Requisito 5
