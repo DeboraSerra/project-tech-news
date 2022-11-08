@@ -1,6 +1,5 @@
 from tech_news.database import search_news
 from datetime import datetime
-import re
 
 # , find_news, insert_or_update, get_collection
 
@@ -15,11 +14,11 @@ def search_by_title(title):
 # Requisito 7
 def search_by_date(date):
     try:
-        parsed_date = datetime.fromisoformat(date).strftime('%d/%m/%Y')
-        returned_news = search_news({'timestamp': parsed_date})
+        parsed_date = datetime.fromisoformat(date).strftime("%d/%m/%Y")
+        returned_news = search_news({"timestamp": parsed_date})
         return [(news["title"], news["url"]) for news in returned_news]
     except ValueError:
-        raise ValueError('Data inválida')
+        raise ValueError("Data inválida")
 
 
 # Requisito 8
