@@ -36,13 +36,13 @@ def analyzer_menu():
         tag = input("Digite a tag:")
         return search_by_tag(tag)
     elif option == "4":
-        category = input('Digite a categoria:')
+        category = input("Digite a categoria:")
         return search_by_category(category)
-    elif option == '5':
+    elif option == "5":
         return top_5_news()
-    elif option == '6':
+    elif option == "6":
         return top_5_categories()
-    elif option == '7':
-        return print('Encerrando script')
+    elif option == "7":
+        return print("Encerrando script")
     else:
-        return print('Opção inválida', file=sys.stderr)
+        return print("Opção inválida", file=sys.stderr)
