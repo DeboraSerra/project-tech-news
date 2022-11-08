@@ -48,7 +48,7 @@ def analyzer_menu():
  7 - Sair.
  """
     )
-    if int(option) < 5:
+    if option in ["0", "1", "2", "3", "4"]:
         eval(f"function_{option}")()
     elif option == "5":
         return top_5_news()
